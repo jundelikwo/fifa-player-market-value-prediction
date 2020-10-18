@@ -29,3 +29,14 @@ dataset['Value3'] = dataset['Value2'].apply(
 
 dataset.drop(['Value2', 'Value'], axis="columns",inplace=True)
 dataset.rename(columns={"Value3":"Value"}, inplace=True)
+
+
+# Convert Wage column from string to number
+dataset['Wage2'] = dataset['Wage'].apply(lambda x: x.split('€')[1])
+dataset['Wage3'] = dataset['Wage2'].apply(
+    lambda x: float(x.split('M')[0])*1000000 
+    if x.split('M').__len__() > 1 else float(x.split('K')[0])*1000
+)
+
+dataset.drop(['Wage2', 'Wage'], axis="columns",inplace=True)
+dataset.rename(columns={"Wage3":"Wage"}, inplace=True)
