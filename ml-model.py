@@ -40,3 +40,12 @@ dataset['Wage3'] = dataset['Wage2'].apply(
 
 dataset.drop(['Wage2', 'Wage'], axis="columns",inplace=True)
 dataset.rename(columns={"Wage3":"Wage"}, inplace=True)
+
+
+
+X = dataset[['Age', 'Overall', 'Potential', 'Wage']]
+y = dataset['Value']
+
+# Splitting the dataset into the Training set and Test set
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
