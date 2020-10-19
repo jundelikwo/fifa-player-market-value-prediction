@@ -172,3 +172,5 @@ models_performance = pd.DataFrame(data = models_performance, columns = ['Model',
 import pickle
 
 pickle.dump(g_regressor, open('model.pkl', 'wb'))
+
+model = pickle.load(open("model.pkl","rb"))
