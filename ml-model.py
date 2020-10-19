@@ -141,4 +141,20 @@ models_performance.append([
     mean_absolute_error(y_test, y_pred),
 ])
 
+
+# Training the Gradient Boosting Regression model on the Training set
+from sklearn.ensemble import GradientBoostingRegressor
+g_regressor = GradientBoostingRegressor(n_estimators = 500)
+g_regressor.fit(X_train, y_train)
+
+# Predicting the Gradient Boosting Regression model Test set results
+y_pred = g_regressor.predict(X_test)
+
+models_performance.append([
+    'Gradient Boosting Regression',
+    r2_score(y_test, y_pred),
+    mean_squared_error(y_test, y_pred),
+    mean_absolute_error(y_test, y_pred),
+])
+
 models_performance = pd.DataFrame(data = models_performance, columns = ['Model', 'R2 Score', 'MSE', 'MAE'])
