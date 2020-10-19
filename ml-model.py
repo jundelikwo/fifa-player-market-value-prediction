@@ -118,4 +118,27 @@ models_performance.append([
     mean_absolute_error(y_test, y_pred),
 ])
 
+
+# Feature Scaling
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+sc_y = StandardScaler()
+scaled_X_train = sc_X.fit_transform(X_train)
+scaled_y_train = sc_y.fit_transform(y_train.values.reshape(len(y_train),1))
+
+# Training the SVR model on the Training set
+from sklearn.svm import SVR
+s_regressor = SVR(kernel = 'rbf')
+s_regressor.fit(scaled_X_train, scaled_y_train)
+
+# Predicting the SVR model Test set results
+y_pred = sc_y.inverse_transform(s_regressor.predict(sc_X.transform(X_test)))
+
+models_performance.append([
+    'SVR',
+    r2_score(y_test, y_pred),
+    mean_squared_error(y_test, y_pred),
+    mean_absolute_error(y_test, y_pred),
+])
+
 models_performance = pd.DataFrame(data = models_performance, columns = ['Model', 'R2 Score', 'MSE', 'MAE'])
