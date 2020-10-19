@@ -102,4 +102,20 @@ models_performance.append([
     mean_absolute_error(y_test, y_pred),
 ])
 
+
+# Training the Random Forest Regression model on the Training set
+from sklearn.ensemble import RandomForestRegressor
+f_regressor = RandomForestRegressor(n_estimators = 300, random_state = 0)
+f_regressor.fit(X_train, y_train)
+
+# Predicting the Random Forest Regression model Test set results
+y_pred = f_regressor.predict(X_test)
+
+models_performance.append([
+    'Random Forest Regression',
+    r2_score(y_test, y_pred),
+    mean_squared_error(y_test, y_pred),
+    mean_absolute_error(y_test, y_pred),
+])
+
 models_performance = pd.DataFrame(data = models_performance, columns = ['Model', 'R2 Score', 'MSE', 'MAE'])
