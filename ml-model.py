@@ -42,6 +42,20 @@ dataset.drop(['Wage2', 'Wage'], axis="columns",inplace=True)
 dataset.rename(columns={"Wage3":"Wage"}, inplace=True)
 
 
+# Checking for outliers in Age
+import seaborn as sns
+sns.set()
+sns.boxplot(dataset['Age'])
+
+q1 = np.percentile(dataset['Age'], 25)
+q3 = np.percentile(dataset['Age'], 75)
+iqr = q3 - q1
+lower = q1 - (1.5 * iqr)
+upper = q3 + (1.5 * iqr)
+
+dataset['Age'][(dataset['Age'] < np.abs(lower)) | (dataset['Age'] > upper)].max()
+
+
 
 X = dataset[['Age', 'Overall', 'Potential', 'Wage']]
 y = dataset['Value']
