@@ -72,3 +72,17 @@ l_regressor.fit(X_train, y_train)
 
 # Predicting the Multiple Linear Regression model Test set results
 y_pred = l_regressor.predict(X_test)
+
+from sklearn.metrics import r2_score
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_absolute_error
+
+models_performance = []
+models_performance.append([
+    'Linear Regression',
+    r2_score(y_test, y_pred),
+    mean_squared_error(y_test, y_pred),
+    mean_absolute_error(y_test, y_pred),
+])
+
+models_performance = pd.DataFrame(data = models_performance, columns = ['Model', 'R2 Score', 'MSE', 'MAE'])
