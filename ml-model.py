@@ -65,6 +65,12 @@ from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
 
+from sklearn.metrics import r2_score
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_absolute_error
+
+models_performance = []
+
 # Training the Multiple Linear Regression model on the Training set
 from sklearn.linear_model import LinearRegression
 l_regressor = LinearRegression()
@@ -73,13 +79,24 @@ l_regressor.fit(X_train, y_train)
 # Predicting the Multiple Linear Regression model Test set results
 y_pred = l_regressor.predict(X_test)
 
-from sklearn.metrics import r2_score
-from sklearn.metrics import mean_squared_error
-from sklearn.metrics import mean_absolute_error
-
-models_performance = []
 models_performance.append([
     'Linear Regression',
+    r2_score(y_test, y_pred),
+    mean_squared_error(y_test, y_pred),
+    mean_absolute_error(y_test, y_pred),
+])
+
+
+# Training the Decision Tree Regression model on the Training set
+from sklearn.tree import DecisionTreeRegressor
+d_regressor = DecisionTreeRegressor(random_state = 0)
+d_regressor.fit(X_train, y_train)
+
+# Predicting the Decision Tree Regression model Test set results
+y_pred = d_regressor.predict(X_test)
+
+models_performance.append([
+    'Decision Tree Regression',
     r2_score(y_test, y_pred),
     mean_squared_error(y_test, y_pred),
     mean_absolute_error(y_test, y_pred),
