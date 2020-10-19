@@ -158,3 +158,11 @@ models_performance.append([
 ])
 
 models_performance = pd.DataFrame(data = models_performance, columns = ['Model', 'R2 Score', 'MSE', 'MAE'])
+
+
+"""
+    Evaluating the different regression models performance
+    shows that gradient boosting has the best performance
+"""
+# To Predict a value
+# g_regressor.predict([[20,76,78,50000]])
