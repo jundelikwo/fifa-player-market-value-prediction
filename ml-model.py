@@ -166,3 +166,9 @@ models_performance = pd.DataFrame(data = models_performance, columns = ['Model',
 """
 # To Predict a value
 # g_regressor.predict([[20,76,78,50000]])
+
+
+# Export Gradient Boosting Regression Model
+import pickle
+
+pickle.dump(g_regressor, open('model.pkl', 'wb'))
