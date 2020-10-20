@@ -12,7 +12,6 @@ def home():
 
 @app.route('/predict',methods=['POST'])
 def predict():
-    print(request.json)
     age = int(request.json.get('Age') or 0)
     overall = int(request.json.get('Overall') or 0)
     potential = int(request.json.get('Potential') or 0)
