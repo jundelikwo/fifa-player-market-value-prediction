@@ -45,6 +45,7 @@ div.form{
 }
 
 form{
+    color: #555;
 	width: 360px;
 	position: relative;
 }
