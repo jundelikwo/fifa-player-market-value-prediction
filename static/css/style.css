@@ -73,6 +73,21 @@ div.form .input-div.one{
 	margin-top: 0;
 }
 
+.loader {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid grey;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  animation: spin 1s linear infinite;
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .i{
 	color: #d9d9d9;
 	display: flex;
